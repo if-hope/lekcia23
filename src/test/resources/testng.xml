@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Hire Tester">
+    <listeners>
+        <listener class-name="listeners.HTListener"/>
+    </listeners>
+    <test name="Regression tests">
+        <classes>
+            <class name="tests.ContactUsTest"/>
+            <class name="tests.SearchResultTest"/>
+        </classes>
+
+    </test>
+</suite>
