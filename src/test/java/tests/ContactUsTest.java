@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import dataprovider.EmailValidationDataProvider;
 import io.qameta.allure.*;
 import listeners.HTListener;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +28,7 @@ public class ContactUsTest extends AbstractTest{
 
 //private static final Logger LOGGER = LogManager.getLogger(ContactUsTest.class);
 
-    @Test
+    @Test(dataProvider = "formDataDB", dataProviderClass = EmailValidationDataProvider.class)
     @Description("This is email validation test")
     @Severity(CRITICAL)
     @Owner("NHope")
@@ -36,10 +37,10 @@ public class ContactUsTest extends AbstractTest{
     @Epic("First epic")
  @Feature("Second feature")
 @Story("Third story")
-    public void emailValidationTest(){
+    public void emailValidationTest(String name, String email, String textArea){
        //LOGGER.info("test has started");
         ContactUsPage contactUsPage = new ContactUsPage().openContactUsPage()
-                .fillForm("Nadia", "email", "Some text message");
+                .fillForm(name, email, textArea);
 
         contactUsPage.getEmailErrorMessage().shouldHave(Condition.exactText("Your e-mail address must be in the following format: name@domain.com"));
 
