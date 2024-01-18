@@ -11,7 +11,7 @@ public class DBConnection {
     private final static String URL = "jdbc:postgresql://localhost:5432/postgres";
     private final static String USER_NAME = "postgres";
     private final static String USER_PASS = "postgres";
-    private final static String SELECT_QUEARY = "select * from EmailValidations";
+    private final static String SELECT_QUERY = "select * from EmailValidations";
 
     private final static String QUERY_INSERT = "insert into EmailValidations values(?,?,?,?)";
     private final static String QUERY_UPDATE = "update EmailValidations set name=? where id=?";
@@ -23,7 +23,7 @@ public class DBConnection {
 
         try (Connection connection = DriverManager.getConnection(URL, USER_NAME, USER_PASS)){
             Statement statement = connection.createStatement();
-            ResultSet resSet = statement.executeQuery(SELECT_QUEARY);
+            ResultSet resSet = statement.executeQuery(SELECT_QUERY);
             while (resSet.next()){
                 EmailValidationData row = new EmailValidationData(resSet.getString("name"), resSet.getString("email"), resSet.getString("textArea"));
                 formData.add(row);

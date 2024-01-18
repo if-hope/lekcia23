@@ -8,9 +8,11 @@ public class EmailValidationDataProvider {
     @DataProvider(name = "email validation")
     public Object[][] createData() {
         return new Object[][] {
-                {"Nadia", "email", "Some text message"},
-                {"Hope", "email@", "Just for test message"},
-                {"Tester", "@gmail.com", "Text to be shown in test"}
+                {"Nadia", "email", "Some text message", "Your e-mail address must be in the following format: name@domain.com"},
+                {"Hope", "email@", "Just for test message", "Your e-mail address must be in the following format: name@domain.com"},
+                {"Tester", "@gmail.com", "Text to be shown in test", "Your e-mail address must be in the following format: name@domain.com"},
+                {"Tester", "", "Text to be shown in test", "We need your e-mail address to contact you"},
+                {"Tester", "    ", "Text to be shown in test", "We need your e-mail address to contact you"}
         };
     }
 

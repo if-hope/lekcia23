@@ -28,7 +28,7 @@ public class ContactUsTest extends AbstractTest{
 
 //private static final Logger LOGGER = LogManager.getLogger(ContactUsTest.class);
 
-    @Test(dataProvider = "formDataDB", dataProviderClass = EmailValidationDataProvider.class)
+    @Test(dataProvider = "email validation", dataProviderClass = EmailValidationDataProvider.class)
     @Description("This is email validation test")
     @Severity(CRITICAL)
     @Owner("NHope")
@@ -37,12 +37,12 @@ public class ContactUsTest extends AbstractTest{
     @Epic("First epic")
  @Feature("Second feature")
 @Story("Third story")
-    public void emailValidationTest(String name, String email, String textArea){
+    public void emailValidationTest(String name, String email, String textArea, String validationMessage){
        //LOGGER.info("test has started");
         ContactUsPage contactUsPage = new ContactUsPage().openContactUsPage()
                 .fillForm(name, email, textArea);
 
-        contactUsPage.getEmailErrorMessage().shouldHave(Condition.exactText("Your e-mail address must be in the following format: name@domain.com"));
+        contactUsPage.getEmailErrorMessage().shouldHave(Condition.exactText(validationMessage));
 
     }
 
